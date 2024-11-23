@@ -31,5 +31,10 @@ This will create a database in MongoDB called __infodisclosure__. Verify its pre
 Answer the following:
 
 1. Briefly explain the potential vulnerabilities in **insecure.ts** that can lead to a DoS attack.
+    The endpoint allows unlimited and unsanitized queries, making it prone to NoSQL injection-based resource exhaustion or malformed requests crashing the server.
+
 2. Briefly explain how a malicious attacker can exploit them.
+    Attackers can repeatedly send malformed or computationally expensive queries, overloading the database or crashing the application.
+
 3. Briefly explain the defensive techniques used in **secure.ts** to prevent the DoS vulnerability?
+    secure.ts implements rate limiting using express-rate-limit, which restricts the number of requests per IP within a time window. Additionally, input validation ensures malformed queries are rejected.
